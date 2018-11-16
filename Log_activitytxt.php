@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Library Log txt
+ * Library Log
  * @author adopabianko@gmail.com
  */
 
