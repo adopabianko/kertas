@@ -47,10 +47,10 @@ class Log_activitytxt {
 			// Jika file sudah ada maka data di update
 			if ( file_exists($this->path.'/'.$this->filename) ) {
 				// Update file log
-				$this->updateFileTxt($list);
+				$this->updateFileLog($list);
 			} else {
 				// Create file log
-				$this->createFileTxt($list);
+				$this->createFileLog($list);
 			}
 		} else {
 			// Create folder logs
@@ -59,10 +59,10 @@ class Log_activitytxt {
 			} else {
 				if ( file_exists($this->filename) ) {
 					// Update file log
-					$this->updateFileTxt($list);
+					$this->updateFileLog($list);
 				} else {
 					// Create file log
-					$this->createFileTxt($list);
+					$this->createFileLog($list);
 				}
 			}
 		}
@@ -70,10 +70,10 @@ class Log_activitytxt {
 	}
 
 	/**
-	 * Create file TEXT
+	 * Create file Log
 	 * @param  array $list
 	 */
-	public function createFileTxt($list) {
+	public function createFileLog($list) {
 		$file = fopen($this->path.'/'.$this->filename,"w");
 
 		$format_log = $list[0].'|'.$list[1].'|'.$list[2].'|'.$list[3].'|'.$list[4].'|'.$list[5].'|'.$list[6]."\n";
@@ -82,10 +82,10 @@ class Log_activitytxt {
 	}
 
 	/**
-	 * Update file TEXT
+	 * Update file Log
 	 * @param  array $list
 	 */
-	public function updateFileTxt($list) {
+	public function updateFileLog($list) {
 		$file = fopen($this->path.'/'.$this->filename,"a");
 
 		$format_log = $list[0].'|'.$list[1].'|'.$list[2].'|'.$list[3].'|'.$list[4].'|'.$list[5].'|'.$list[6]."\n";
