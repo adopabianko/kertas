@@ -42,19 +42,14 @@ class Log_activitytxt {
 		@chmod($this->path,0777); // Folder
 		@chmod($this->path.'/'.$this->filename,0777); // File
 
-		// Set Owner
-		// $user_name = 'apache';
-		// @chown($this->path, $user_name);
-		// @chown($this->path.'/'.$this->filename, $user_name);
-
 		// Jika folder sudah ada maka data di update
 		if ( file_exists($this->path) ) {
 			// Jika file sudah ada maka data di update
 			if ( file_exists($this->path.'/'.$this->filename) ) {
-				// Update file csv
+				// Update file log
 				$this->updateFileTxt($list);
 			} else {
-				// Create file csv
+				// Create file log
 				$this->createFileTxt($list);
 			}
 		} else {
@@ -63,10 +58,10 @@ class Log_activitytxt {
 			    echo "Gagal membuat folder";
 			} else {
 				if ( file_exists($this->filename) ) {
-					// Update file csv
+					// Update file log
 					$this->updateFileTxt($list);
 				} else {
-					// Create file csv
+					// Create file log
 					$this->createFileTxt($list);
 				}
 			}
