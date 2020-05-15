@@ -5,38 +5,16 @@
  * @author adopabianko@gmail.com
  */
 
-class Log_activitytxt {
+class Log_activity {
 	protected $path;
 	protected $filename;
 
 	/**
 	 * Create log
-	 * @param  string $log_url
-	 * @param  string $log_method
-	 * @param  string $log_param
-	 * @param  string $log_response
-	 * @param  string $log_ip
-	 * @param  string $created_by
 	 */
-	public function createLog(
-		$created_by,
-		$log_url,
-		$log_method,
-		$log_param,
-		$log_response
-	) {
+	public function createLog($dataLog = array()) {
 		$this->path     = './logs/'.date('Y').'/'.date('m'); // Directory Logs
 		$this->filename = 'log_api_'.date('d_m_Y').'.log'; // File log
-
-		$list = array (
-			date('ymdHis'),
-			$created_by,
-			$log_url,
-			$log_method,
-			$log_param,
-			$log_response,
-			$_SERVER['REMOTE_ADDR'] != null ? $_SERVER['REMOTE_ADDR'] : $_SERVER['HTTP_X_FORWARDED_FOR']
-		);
 
 		// Set permission denied di linux
 		@chmod($this->path,0777); // Folder
@@ -47,10 +25,10 @@ class Log_activitytxt {
 			// Jika file sudah ada maka data di update
 			if ( file_exists($this->path.'/'.$this->filename) ) {
 				// Update file log
-				$this->updateFileLog($list);
+				$this->updateFileLog($dataLog);
 			} else {
 				// Create file log
-				$this->createFileLog($list);
+				$this->createFileLog($dataLog);
 			}
 		} else {
 			// Create folder logs
@@ -59,10 +37,10 @@ class Log_activitytxt {
 			} else {
 				if ( file_exists($this->filename) ) {
 					// Update file log
-					$this->updateFileLog($list);
+					$this->updateFileLog($dataLog);
 				} else {
 					// Create file log
-					$this->createFileLog($list);
+					$this->createFileLog($dataLog);
 				}
 			}
 		}
@@ -71,24 +49,38 @@ class Log_activitytxt {
 
 	/**
 	 * Create file Log
-	 * @param  array $list
+	 * @param  array $dataLog
 	 */
-	public function createFileLog($list) {
+	public function createFileLog($dataLog) {
 		$file = fopen($this->path.'/'.$this->filename,"w");
 
-		$format_log = $list[0].'|'.$list[1].'|'.$list[2].'|'.$list[3].'|'.$list[4].'|'.$list[5].'|'.$list[6]."\n";
+		$format_log = '['.date('Y-m-d H:i:s').']';
+
+		for ($i = 0; $i < count($dataLog); $i++) {
+			$format_log .= ' - '.'['.$dataLog[$i].']';
+		}
+
+		$format_log .= "\n";
+
 		fwrite($file, $format_log);
 		fclose($file);
 	}
 
 	/**
 	 * Update file Log
-	 * @param  array $list
+	 * @param  array $dataLog
 	 */
-	public function updateFileLog($list) {
+	public function updateFileLog($dataLog) {
 		$file = fopen($this->path.'/'.$this->filename,"a");
 
-		$format_log = $list[0].'|'.$list[1].'|'.$list[2].'|'.$list[3].'|'.$list[4].'|'.$list[5].'|'.$list[6]."\n";
+		$format_log = '['.date('Y-m-d H:i:s').']';
+
+		for ($i = 0; $i < count($dataLog); $i++) {
+			$format_log .= ' - '.'['.$dataLog[$i].']';
+		}
+
+		$format_log .= "\n";
+		
 		fwrite($file, $format_log);
 		fclose($file);
 	}
