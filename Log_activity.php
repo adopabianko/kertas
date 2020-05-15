@@ -14,7 +14,7 @@ class Log_activity {
 	 */
 	public function createLog($dataLog = array()) {
 		$this->path     = './logs/'.date('Y').'/'.date('m'); // Directory Logs
-		$this->filename = 'log_api_'.date('d_m_Y').'.log'; // File log
+		$this->filename = 'log_api_'.date('dmY').'.log'; // File log
 
 		// Set permission denied di linux
 		@chmod($this->path,0777); // Folder
