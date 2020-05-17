@@ -1,18 +1,19 @@
 <?php
 
 /**
- * Library Log
+ * Library untuk mencatat aktifitas API
  * @author adopabianko@gmail.com
  */
 
-class Log_activity {
+class Kertas {
 	protected $path;
 	protected $filename;
 
 	/**
 	 * Create log
+	 * @param array $dataLog
 	 */
-	public function createLog($dataLog = array()) {
+	public function create($dataLog = array()) {
 		$this->path     = './logs/'.date('Y').'/'.date('m'); // Directory Logs
 		$this->filename = 'log_api_'.date('dmY').'.log'; // File log
 
@@ -25,10 +26,10 @@ class Log_activity {
 			// Jika file sudah ada maka data di update
 			if ( file_exists($this->path.'/'.$this->filename) ) {
 				// Update file log
-				$this->updateFileLog($dataLog);
+				$this->updateFile($dataLog);
 			} else {
 				// Create file log
-				$this->createFileLog($dataLog);
+				$this->createFile($dataLog);
 			}
 		} else {
 			// Create folder logs
@@ -37,10 +38,10 @@ class Log_activity {
 			} else {
 				if ( file_exists($this->filename) ) {
 					// Update file log
-					$this->updateFileLog($dataLog);
+					$this->updateFile($dataLog);
 				} else {
 					// Create file log
-					$this->createFileLog($dataLog);
+					$this->createFile($dataLog);
 				}
 			}
 		}
@@ -51,7 +52,7 @@ class Log_activity {
 	 * Create file Log
 	 * @param  array $dataLog
 	 */
-	public function createFileLog($dataLog) {
+	public function createFile($dataLog) {
 		$file = fopen($this->path.'/'.$this->filename,"w");
 
 		$format_log = '['.date('Y-m-d H:i:s').']';
@@ -70,7 +71,7 @@ class Log_activity {
 	 * Update file Log
 	 * @param  array $dataLog
 	 */
-	public function updateFileLog($dataLog) {
+	public function updateFile($dataLog) {
 		$file = fopen($this->path.'/'.$this->filename,"a");
 
 		$format_log = '['.date('Y-m-d H:i:s').']';

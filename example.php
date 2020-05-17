@@ -1,11 +1,11 @@
 <?php 
 
-require_once('Log_activity.php');
+require_once('Kertas.php');
 
-$log = new Log_activity();
-$log->createLog(['GET', '119.110.87.74', 'https://www.google.com?param=value', '{"status": "00"}']);
-$log->createLog(['POST', '119.110.87.74', 'https://www.google.com/', '{"email": "ado@ganteng.com", "password": "admin123"}, {"status": "00"}']);
-$log->createLog(['GET', '119.110.87.74', 'https://www.google.com?param=value', '{"status": "00"}']);
-$log->createLog(['POST', '119.110.87.74', 'https://www.google.com/', '{"email": "ado@ganteng.com", "password": "admin123"}, {"status": "00"}']);
-$log->createLog(['GET', '119.110.87.74', 'https://www.google.com?param=value', '{"status": "00"}']);
-$log->createLog(['POST', '119.110.87.74', 'https://www.google.com/', '{"email": "ado@ganteng.com", "password": "admin123"}, {"status": "00"}']);
+$kertas = new Kertas();
+$kertas->create(['GET', '119.110.87.74', 'https://www.example.com?param=value', '{"status": "00"}']);
+$kertas->create(['POST', '119.110.87.74', 'https://www.example.com/login', '{"email": "adopabianko@gmail.com", "password": "admin123"}, {"status": "00"}']);
+$kertas->create(['GET', '119.110.87.74', 'https://www.example.com?param=value', '{"status": "00"}']);
+$kertas->create(['POST', '119.110.87.74', 'https://www.example.com/login', '{"email": "adopabianko@gmail.com", "password": "admin123"}, {"status": "00"}']);
+$kertas->create(['GET', '119.110.87.74', 'https://www.example.com?param=value', '{"status": "00"}']);
+$kertas->create(['POST', '119.110.87.74', 'https://www.example.com/login', '{"email": "adopabianko@gmail.com", "password": "admin123"}, {"status": "00"}']);
