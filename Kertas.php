@@ -36,13 +36,7 @@ class Kertas {
 			if ( ! mkdir($this->path, 0777, true) ) {
 			    echo "Gagal membuat folder";
 			} else {
-				if ( file_exists($this->filename) ) {
-					// Update file log
-					$this->updateFile($dataLog);
-				} else {
-					// Create file log
-					$this->createFile($dataLog);
-				}
+				$this->create($dataLog);
 			}
 		}
 
