@@ -6,8 +6,8 @@
  */
 
 class Kertas {
-	protected $path;
-	protected $filename;
+	private $path;
+	private $filename;
 
 	/**
 	 * Create log
