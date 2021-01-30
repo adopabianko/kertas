@@ -46,7 +46,7 @@ class Kertas {
 	 * Create file Log
 	 * @param  array $dataLog
 	 */
-	public function createFile($dataLog) {
+	public function createFile($dataLog=array()) {
 		$file = fopen($this->path.'/'.$this->filename,"w");
 
 		$format_log = '['.date('Y-m-d H:i:s').']';
@@ -65,7 +65,7 @@ class Kertas {
 	 * Update file Log
 	 * @param  array $dataLog
 	 */
-	public function updateFile($dataLog) {
+	public function updateFile($dataLog=array()) {
 		$file = fopen($this->path.'/'.$this->filename,"a");
 
 		$format_log = '['.date('Y-m-d H:i:s').']';
